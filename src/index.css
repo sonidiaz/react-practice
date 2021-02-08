@@ -5,9 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 60px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card-grid{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card{
+  text-align: center;
+  width: 200px;
+  border: 1px solid black;
+  overflow: hidden;
+  margin: 10px;
+}
+.card h3{
+  padding: 5px;
+  text-align: center;
+}
+.card img{
+  max-height: 170px;
 }
