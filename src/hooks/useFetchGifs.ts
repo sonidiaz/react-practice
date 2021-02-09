@@ -11,12 +11,10 @@ const UserFetchGifs = (category: any) => {
   useEffect(() => {
     getGifts(category)
       .then(img => {
-        setTimeout(() => {
-          setState({
-            data: img,
-            loading: false
-          })
-        }, 3000);
+        setState({
+          data: img,
+          loading: false
+        })
     })
   }, [category])
 

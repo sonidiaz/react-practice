@@ -7,7 +7,7 @@ export interface GiftGridItemProps {
  
 const GiftGridItem: React.SFC<GiftGridItemProps> = ({title, url}) => {
   return ( 
-    <div className="card">
+    <div className="card animate__animated animate__fadeIn">
       <img src={url} />
       <h3>{title}</h3>
     </div>
