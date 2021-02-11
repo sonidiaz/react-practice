@@ -3,15 +3,10 @@ import { todoReducer } from './todoReducer';
 import './styles.css'
 import { useForm } from '../../hooks/useForm';
 import TodoList from './TodoList';
+import TodoAdd from './TodoAdd';
 
 export interface TodoAppProps {
   
-}
-
-interface Todo {
-  id: number,
-  desc: string,
-  done: boolean
 }
 
 const init = (): object => {
@@ -20,27 +15,6 @@ const init = (): object => {
  
 const TodoApp: React.SFC<TodoAppProps> = () => {
   const [todos, dispatch] = useReducer( todoReducer, [], init)
-
-  const [{ description }, handleInputChange, reset] = useForm({
-    description: ''
-  })
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-    const newTask: Todo = {
-      id: new Date().getTime(),
-      desc: description,
-      done: false
-    }
-
-    const action = {
-      type: 'ADD',
-      payload: newTask
-    }
-    dispatch(action)
-    reset()
-  }
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos))
@@ -61,6 +35,14 @@ const TodoApp: React.SFC<TodoAppProps> = () => {
     })
   }
 
+  const handleAddTodo = (newTodo) => {
+    const action = {
+      type: 'ADD',
+      payload: newTodo
+    }
+    dispatch(action)
+  }
+
   return ( 
     <div>
       <h1>Certification Microsoft ENCAMINA ({todos.length})</h1>
@@ -74,23 +56,9 @@ const TodoApp: React.SFC<TodoAppProps> = () => {
           />
         </div>
         <div className="col-5">
-          <h4>Agregar Certificatión</h4>
-          <hr/>
-          <form onSubmit={handleSubmit}>
-              <input 
-              className="form-control "
-              type="text"
-              name="description"
-              placeholder="Aprender..."
-              autoComplete="off"
-              value={description}
-              onChange={handleInputChange}
-            /> 
-            <button className="btn-agregar btn btn-outline-primary btn-block mt-1">
-              Agregar
-            </button>
-          </form>
-
+          <TodoAdd 
+            handleAddTodo={handleAddTodo}
+          />
         </div>
 
       </div>

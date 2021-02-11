@@ -5,7 +5,6 @@ interface Todo {
   done: boolean
 }
 export const todoReducer = (state:Todo[] = [], action:any ) => {
-  
   switch (action.type) {
     case 'ADD':
         return [...state, action.payload];
